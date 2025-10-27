@@ -2,6 +2,7 @@
 menu:
   - Home: /
     Archives: /archives
+    Feed: /atom.xml
   - GitHub: https://github.com/Hanssen0
     Bluesky: https://bsky.hanssen0.com
     Twitter: https://twitter.com/Hanssen0

@@ -132,7 +132,23 @@ markdown:
     post_asset: false
   inline: false
 
+feed:
+  enable: true
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
+  limit: 20
+  content: true
+  content_limit: 140
+  autodiscovery: true
+
 alias:
+  atom: atom.xml
+  rss: rss2.xml
+  rss2: rss2.xml
   articles/Pursuit_of_an_Apprentice_zh-Hans.md.html: articles/Pursuit_of_an_Apprentice_zh-Hans
   articles/Standalone_No_Dependency_zh-Hans.md.html: articles/Standalone_No_Dependency_zh-Hans
   articles/Mr_Wan_has_gone_zh-Hans.md.html: articles/Mr_Wan_has_gone_zh-Hans
