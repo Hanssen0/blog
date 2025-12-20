@@ -2,3 +2,8 @@
   for = "/css/giscus.css"
   [headers.values]
     access-control-allow-origin = "*"
+
+[[headers]]
+  for = "/css/giscus-dark.css"
+  [headers.values]
+    access-control-allow-origin = "*"

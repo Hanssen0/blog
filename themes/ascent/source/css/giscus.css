@@ -1,3 +1,7 @@
+main {
+  --color-fg-default: #212121;
+}
+
 .gsc-reactions-popover {
-  background-color: #212121;
+  background-color: #fafafa;
 }
