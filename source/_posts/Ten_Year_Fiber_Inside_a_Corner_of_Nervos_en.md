@@ -129,3 +129,7 @@ His voice was the same as always, steady with a hint of sly playfulness. He didn
 "Precisely because of that, it is a plan that needs ten years."
 
 Ten years from now, will that green checkmark really light up?
+
+[^1]
+
+[^1]:<small>More discussions can be found on [the Nervos community forum](https://talk.nervos.org/t/en-cn-fiber-nervos-ten-year-fiber-inside-a-corner-of-nervos/9787).</small>

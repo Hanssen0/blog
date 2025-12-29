@@ -129,3 +129,7 @@ Fiber 的进展也不会因为他们的缺席而停滞。好消息是，Fiber �
 「正因为这样，它才是个需要十年的计划呀。」
 
 十年之后，那个绿色的勾号，真的会亮起来吗？
+
+[^1]
+
+[^1]:<small>更多讨论可以在 [Nervos 社区论坛](https://talk.nervos.org/t/en-cn-fiber-nervos-ten-year-fiber-inside-a-corner-of-nervos/9787)上找到。</small>
