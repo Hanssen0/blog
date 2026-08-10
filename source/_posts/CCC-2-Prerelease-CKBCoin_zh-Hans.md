@@ -101,3 +101,4 @@ CKB 这种链上只关心最终状态转移的设计，的确减少了不必要�
 * CKBC(oin) 网页应用: https://test.ckbc.ckbccc.com
 * iCKB GitHub: https://github.com/ickb
 * CoBuild Protocol: https://talk.nervos.org/t/ckb-transaction-cobuild-protocol-overview/7702
+* 本文同时发表在 Nervos Talk 上: https://talk.nervos.org/t/ccc-2-0-0-prerelease-cobuild-coin-ckbc-oin/10597
