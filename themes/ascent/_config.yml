@@ -1,6 +1,7 @@
 # Header
 menu:
   - Feed: /atom.xml
+    Email: mailto:0@hanssen0.com
     GitHub: https://github.com/Hanssen0
     Bluesky: https://bsky.hanssen0.com
 # rss: /atom.xml
