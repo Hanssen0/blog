@@ -9,7 +9,7 @@
           <% if (index){ %>
           <a class="article-date-link" href="<%- url_for(post.path) %>" aria-label="<%= is_note ? 'Open this thought' : 'Open this article' %>">
           <% } %>
-          <%- partial('post/date', {class_name: 'article-date', date_format: 'MMMM D, YYYY, h:mm A'}) %>
+          <%- partial('post/date', {class_name: 'article-date', date_format: 'MMMM D, YYYY'}) %>
           <% if (index){ %>
           </a>
           <% } %>

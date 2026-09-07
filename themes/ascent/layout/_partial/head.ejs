@@ -18,6 +18,17 @@
   } else if (is_tag()){
     title = __('tag') + ': ' + page.tag;
   }
+
+  var generated_og = generated_open_graph(page) || {};
+  var plain_content = strip_html(page.content || '').replace(/\s+/g, ' ').trim();
+  var description_source = generated_og.description || page.description || plain_content || config.description || "Hanssen's Blog";
+  var description_characters = Array.from(strip_html(description_source).replace(/\s+/g, ' ').trim());
+  var og_description = description_characters.length > 180
+    ? description_characters.slice(0, 180).join('') + '…'
+    : description_characters.join('');
+  var og_title = generated_og.title || title || config.title;
+  var og_image = full_url_for(generated_og.image || 'og-image.png');
+  var og_url = page.permalink || full_url_for(page.path || '');
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -32,20 +43,20 @@
     <%- css('css/highlight') %>
   <% } %>
   <%- open_graph({
-    title: title,
-    image: "https://blog.hanssen0.com/og-image.png",
-    twitter_image: "https://blog.hanssen0.com/twitter-image.png",
-    description: "Hanssen's Blog",
-    author: "Hanssen",
-    url: "https://blog.hanssen0.com",
+    title: og_title,
+    type: is_post() ? 'article' : 'website',
+    image: og_image,
+    twitter_image: og_image,
+    description: og_description,
+    author: config.author,
+    url: og_url,
     twitter_card: "summary_large_image",
     twitter_id: "Hanssen0",
   }) -%>
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:image" content="https://blog.hanssen0.com/twitter-image.png">
-  <meta property="twitter:creator" content="@Hanssen0">
-  <meta name="twitter:title" content="<%- title -%>">
-  <meta name="twitter:description" content="Hanssen's Blog">
-  <meta property="twitter:title" content="<%- title -%>">
-  <meta property="twitter:description" content="Hanssen's Blog">
+  <% if (generated_og.image){ %>
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="<%= og_title %>">
+  <% } %>
 </head>

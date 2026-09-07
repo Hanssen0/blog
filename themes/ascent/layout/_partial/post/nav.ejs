@@ -5,7 +5,7 @@ function navTitle(target) {
   var text = strip_html(target.content || '').replace(/\s+/g, ' ').trim();
   var characters = Array.from(text);
 
-  if (!characters.length) return date(target.date, 'MMMM D, YYYY, h:mm A');
+  if (!characters.length) return date(target.date, 'MMMM D, YYYY');
   return characters.length > 18 ? characters.slice(0, 18).join('') + '…' : text;
 }
 %>
