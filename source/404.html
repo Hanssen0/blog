@@ -1,0 +1,48 @@
+---
+layout: false
+permalink: /404.html
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Hanssen's Whisper</title>
+  <script>
+    (() => {
+      const path = window.location.pathname;
+      if (!path.startsWith('/articles/')) return;
+
+      const canonicalPath = path.toLowerCase();
+      if (canonicalPath === path) return;
+
+      window.location.replace(
+        canonicalPath + window.location.search + window.location.hash
+      );
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: Georgia, 'Noto Serif CJK SC', serif;
+    }
+
+    body {
+      display: grid;
+      min-height: 100vh;
+      margin: 0;
+      place-items: center;
+      text-align: center;
+    }
+
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p><a href="/">Return to Hanssen's Whisper</a></p>
+  </main>
+</body>
+</html>
