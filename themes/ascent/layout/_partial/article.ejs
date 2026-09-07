@@ -6,11 +6,11 @@
         <%- partial('post/title', {class_name: 'article-title'}) %>
         <% } %>
         <div class="article-meta">
-          <% if (is_note && index){ %>
-          <a class="note-date" href="<%- url_for(post.path) %>" aria-label="Open this thought">
+          <% if (index){ %>
+          <a class="article-date-link" href="<%- url_for(post.path) %>" aria-label="<%= is_note ? 'Open this thought' : 'Open this article' %>">
           <% } %>
           <%- partial('post/date', {class_name: 'article-date', date_format: 'MMMM D, YYYY, h:mm A'}) %>
-          <% if (is_note && index){ %>
+          <% if (index){ %>
           </a>
           <% } %>
           <% if (theme.word_count){ %>
