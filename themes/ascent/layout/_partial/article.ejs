@@ -1,10 +1,18 @@
-<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemprop="blogPost" itemscope>
+<% var is_note = !post.title; %>
+<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= is_note ? 'note' : post.layout %>" itemprop="blogPost" itemscope>
   <div class="article-inner">
-    <% if (post.link || post.title){ %>
-      <header class="article-header">
+      <header class="article-header<%= is_note ? ' note-header' : '' %>">
+        <% if (!is_note){ %>
         <%- partial('post/title', {class_name: 'article-title'}) %>
+        <% } %>
         <div class="article-meta">
+          <% if (is_note && index){ %>
+          <a class="note-date" href="<%- url_for(post.path) %>" aria-label="Open this thought">
+          <% } %>
           <%- partial('post/date', {class_name: 'article-date', date_format: 'MMMM D, YYYY, h:mm A'}) %>
+          <% if (is_note && index){ %>
+          </a>
+          <% } %>
           <% if (theme.word_count){ %>
             × <span class="article-word-count"><%= wordcount(post.content) %> words</span>
             <% if (min2read(post.content) == 1){ %>
@@ -15,7 +23,6 @@
           <% } %>
         </div>
       </header>
-    <% } %>
     <div class="article-entry" itemprop="articleBody">
       <% if (post.photos && post.photos.length){ %>
       <div class="article-gallery">

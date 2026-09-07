@@ -1,12 +1,21 @@
+<%
+function navTitle(target) {
+  if (target.title) return target.title;
+
+  var text = strip_html(target.content || '').replace(/\s+/g, ' ').trim();
+  var characters = Array.from(text);
+
+  if (!characters.length) return date(target.date, 'MMMM D, YYYY, h:mm A');
+  return characters.length > 18 ? characters.slice(0, 18).join('') + '…' : text;
+}
+%>
 <% if (post.prev || post.next){ %>
 <nav id="article-nav" class="article-nav">
   <% if (post.prev){ %>
     <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap newer">
       <strong class="article-nav-caption"><%= __('newer') %></strong>
       <div class="article-nav-title">
-        <% if (post.prev.title){ %>
-          <%= post.prev.title %>
-        <% } %>
+        <%= navTitle(post.prev) %>
       </div>
     </a>
   <% } else { %>
@@ -16,9 +25,7 @@
     <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap older">
       <strong class="article-nav-caption"><%= __('older') %></strong>
       <div class="article-nav-title">
-        <% if (post.next.title){ %>
-          <%= post.next.title %>
-        <% } %>
+        <%= navTitle(post.next) %>
       </div>
     </a>
   <% } else { %>

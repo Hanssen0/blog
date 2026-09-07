@@ -3,7 +3,9 @@
   <%
   var title = page.title;
 
-  if (is_archive()){
+  if (is_post() && !page.title){
+    title = 'Whisper · ' + date(page.date, 'YYYY-MM-DD');
+  } else if (is_archive()){
     title = __('archive_a');
 
     if (is_month()){

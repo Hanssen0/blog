@@ -2,7 +2,11 @@
   <div class="archive-article-inner">
     <header class="archive-article-header">
       <%- partial('post/date', {class_name: 'archive-article-date', date_format: 'D'}) %>
-      <%- partial('post/title', {class_name: 'archive-article-title'}) %>
+      <% if (post.title){ %>
+        <%- partial('post/title', {class_name: 'archive-article-title'}) %>
+      <% } else { %>
+        <a class="archive-article-title" href="<%- url_for(post.path) %>"><%= date(post.date, 'h:mm A') %></a>
+      <% } %>
     </header>
   </div>
 </article>

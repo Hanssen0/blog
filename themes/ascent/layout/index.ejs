@@ -1,1 +1,123 @@
-<%- partial('_partial/archive', {pagination: 2, index: true}) %>
+<% page.groups.forEach(function(group) { %>
+  <% if (group.type === 'post') { %>
+    <%- partial('_partial/article', {post: group.post, index: true}) %>
+  <% } else { %>
+    <section class="note-group<%= group.posts.length > 1 ? ' note-group-expandable' : '' %>" aria-label="Short thoughts">
+      <%- partial('_partial/article', {post: group.posts[0], index: true}) %>
+      <% if (group.posts.length > 1) { %>
+        <% var remainingThoughts = group.posts.length - 1; %>
+        <div class="note-group-fold">
+          <details class="note-group-more">
+            <summary>
+              <span class="note-group-more-label"><%= remainingThoughts %> more</span>
+              <span class="note-group-collapse-label">collapse</span>
+            </summary>
+            <div class="note-group-expanded">
+              <% group.posts.slice(1).forEach(function(post) { %>
+                <%- partial('_partial/article', {post: post, index: true}) %>
+              <% }) %>
+            </div>
+          </details>
+          <div class="note-group-preview">
+            <header class="article-header note-header">
+              <div class="article-meta">
+                <a class="note-date" href="<%- url_for(group.posts[1].path) %>" aria-label="Open this thought">
+                <%- partial('_partial/post/date', {
+                  post: group.posts[1],
+                  class_name: 'article-date',
+                  date_format: 'MMMM D, YYYY, h:mm A'
+                }) %>
+                </a>
+              </div>
+            </header>
+            <div class="article-entry">
+              <%- group.posts[1].content %>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </section>
+  <% } %>
+<% }) %>
+
+<% if (page.total > 1) { %>
+  <nav id="page-nav" class="page-nav">
+    <%- paginator({
+      prev_text: "« " + __('prev'),
+      next_text: __('next') + " »"
+    }) %>
+  </nav>
+<% } %>
+
+<script>
+document.querySelectorAll('.note-group-more').forEach(function(details) {
+  var summary = details.querySelector('summary');
+  var fold = details.closest('.note-group-fold');
+  fold.dataset.closedHeight = fold.getBoundingClientRect().height;
+
+  summary.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if (fold.dataset.animating === 'true') return;
+
+    var startHeight = fold.getBoundingClientRect().height;
+    var shouldOpen = !details.open;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (shouldOpen) fold.dataset.closedHeight = startHeight;
+
+    if (reduceMotion || !fold.animate) {
+      details.open = shouldOpen;
+      return;
+    }
+
+    var endHeight = Number(fold.dataset.closedHeight);
+    if (shouldOpen) {
+      details.open = true;
+      endHeight = fold.getBoundingClientRect().height;
+    }
+
+    if (!Number.isFinite(endHeight)) return;
+
+    var collapseWidth = summary.getBoundingClientRect().width;
+    fold.dataset.animating = 'true';
+    fold.style.overflow = 'hidden';
+    summary.style.boxSizing = 'border-box';
+    summary.style.width = collapseWidth + 'px';
+
+    var collapseFrame;
+    var edgeGap = parseFloat(getComputedStyle(summary).bottom) || 16;
+
+    function positionCollapse() {
+      var foldBottom = fold.getBoundingClientRect().bottom;
+      var bottom = Math.max(edgeGap, window.innerHeight - foldBottom + edgeGap);
+      summary.style.bottom = bottom + 'px';
+      collapseFrame = requestAnimationFrame(positionCollapse);
+    }
+
+    var heightAnimation = fold.animate([
+      { height: startHeight + 'px' },
+      { height: endHeight + 'px' }
+    ], {
+      duration: 480,
+      easing: 'cubic-bezier(.42, 0, .58, 1)',
+      fill: 'both'
+    });
+
+    positionCollapse();
+
+    function finishAnimation() {
+      cancelAnimationFrame(collapseFrame);
+      summary.style.bottom = '';
+      summary.style.boxSizing = '';
+      summary.style.width = '';
+      if (!shouldOpen) details.open = false;
+      fold.style.overflow = '';
+      delete fold.dataset.animating;
+      heightAnimation.cancel();
+    }
+
+    heightAnimation.addEventListener('finish', finishAnimation, { once: true });
+  });
+});
+</script>
