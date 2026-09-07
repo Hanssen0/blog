@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= config.language || 'en' %>">
 <%- partial('_partial/head') %>
 <body>
   <div id="wrapper">
     <%- partial('_partial/header') %>
-    <div id="content">
+    <main id="content">
       <%- body %>
-    </div>
+    </main>
   </div>
   <%- partial('_partial/footer') %>
 </body>

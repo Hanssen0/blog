@@ -1,19 +1,17 @@
-@import url('//fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;900&display=swap');
- 
 /* general */
 :root {
   --bg-color: #fafafa;
   --code-bg-color: #f4f4f4;
   --text-color: #212121;
-  --secondary-color: #808080;
+  --secondary-color: #707070;
   --tertiary-color: #b0b0b0;
   --link-color: #b5c8cf;
   --link-hover-color: #618794;
   --link-bg-color: #dae4e7;
   --selection-color: #dae4e7;
-  --body-stack: "Lora", "Georgia", "Times New Roman", "Noto Serif TC", "Noto Serif SC", "Noto Serif JP", serif;
+  --body-stack: "Lora", "Georgia", "Times New Roman", "Noto Serif TC", "Noto Serif SC", "Noto Serif JP", "Songti SC", "Songti TC", "STSong", serif;
   --secondary-stack: "Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif;
-  --title-stack: "Playfair Display SC", "Georgia", "Noto Serif TC", "Noto Serif SC", "Noto Serif JP", serif;
+  --title-stack: "Playfair Display SC", "Georgia", "Noto Serif TC", "Noto Serif SC", "Noto Serif JP", "Songti SC", "Songti TC", "STSong", serif;
 }
 
 html {

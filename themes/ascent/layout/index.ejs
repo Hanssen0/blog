@@ -21,7 +21,9 @@
           <div class="note-group-preview">
             <header class="article-header note-header">
               <div class="article-meta">
-                <a class="article-date-link" href="<%- url_for(group.posts[1].path) %>" aria-label="Open this thought">
+                <% var preview_name = strip_html(group.posts[1].content || '').replace(/\s+/g, ' ').trim(); %>
+                <% if (Array.from(preview_name).length > 80) preview_name = Array.from(preview_name).slice(0, 80).join('') + '…'; %>
+                <a class="article-date-link" href="<%- url_for(group.posts[1].path) %>" aria-label="Open <%= preview_name || ('thought from ' + date(group.posts[1].date, 'MMMM D, YYYY')) %>">
                 <%- partial('_partial/post/date', {
                   post: group.posts[1],
                   class_name: 'article-date',

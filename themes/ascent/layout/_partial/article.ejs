@@ -1,4 +1,9 @@
-<% var is_note = !post.title; %>
+<%
+var is_note = !post.title;
+var link_name = post.title || strip_html(post.content || '').replace(/\s+/g, ' ').trim();
+if (Array.from(link_name).length > 80) link_name = Array.from(link_name).slice(0, 80).join('') + '…';
+if (!link_name) link_name = (is_note ? 'thought from ' : 'article from ') + date(post.date, 'MMMM D, YYYY');
+%>
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= is_note ? 'note' : post.layout %>" itemprop="blogPost" itemscope>
   <div class="article-inner">
       <header class="article-header<%= is_note ? ' note-header' : '' %>">
@@ -7,7 +12,7 @@
         <% } %>
         <div class="article-meta">
           <% if (index){ %>
-          <a class="article-date-link" href="<%- url_for(post.path) %>" aria-label="<%= is_note ? 'Open this thought' : 'Open this article' %>">
+          <a class="article-date-link" href="<%- url_for(post.path) %>" aria-label="Open <%= link_name %>">
           <% } %>
           <%- partial('post/date', {class_name: 'article-date', date_format: 'MMMM D, YYYY'}) %>
           <% if (index){ %>
@@ -43,7 +48,7 @@
     </div>
     <% if (post.excerpt && index && theme.excerpt_link){ %>
       <div class="article-more-link">
-        <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+        <a href="<%- url_for(post.path) %>#more" aria-label="Read <%= link_name %>"><%= theme.excerpt_link %></a>
       </div>
     <% } %>
     <% if (!index && ((post.tags && post.tags.length) || (post.categories && post.categories.length))){ %>
