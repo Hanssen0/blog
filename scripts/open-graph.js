@@ -203,12 +203,12 @@ hexo.extend.filter.register('before_generate', async function generateOpenGraphI
     const suppliedDescription = toPlainText(post.description);
     const suppliedCardDescription = toPlainText(post.description, { preserveLineBreaks: true });
     const isThought = !post.title;
+    const date = formatDate(post.date);
     const metadataTitle = isThought
-      ? truncate(content || formatDate(post.date), 42)
+      ? `${hexo.config.title} · ${date}`
       : toPlainText(post.title);
     const description = truncate(suppliedExcerpt || suppliedDescription || content || metadataTitle, 180);
     const cardDescription = suppliedCardExcerpt || suppliedCardDescription || cardContent || metadataTitle;
-    const date = formatDate(post.date);
     const identity = createHash('sha256').update(post.path).digest('hex').slice(0, 12);
     const revision = createHash('sha256')
       .update(JSON.stringify({ title: metadataTitle, description, cardDescription, date, isThought, version: CARD_VERSION }))

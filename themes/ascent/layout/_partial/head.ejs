@@ -1,10 +1,12 @@
 <head>
   <meta charset="utf-8">
   <%
+  var generated_og = generated_open_graph(page) || {};
+  var is_thought = is_post() && !page.title;
   var title = page.title;
 
-  if (is_post() && !page.title){
-    title = 'Whisper · ' + date(page.date, 'YYYY-MM-DD');
+  if (is_thought){
+    title = generated_og.title || ('Whisper · ' + date(page.date, 'YYYY-MM-DD'));
   } else if (is_archive()){
     title = __('archive_a');
 
@@ -19,7 +21,6 @@
     title = __('tag') + ': ' + page.tag;
   }
 
-  var generated_og = generated_open_graph(page) || {};
   var plain_content = strip_html(page.content || '').replace(/\s+/g, ' ').trim();
   var description_source = generated_og.description || page.description || plain_content || config.description || "Hanssen's Blog";
   var description_characters = Array.from(strip_html(description_source).replace(/\s+/g, ' ').trim());
@@ -30,7 +31,7 @@
   var og_image = full_url_for(generated_og.image || 'og-image.png');
   var og_url = page.permalink || full_url_for(page.path || '');
   %>
-  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <title><% if (is_thought){ %><%= title %><% } else { %><% if (title){ %><%= title %> | <% } %><%= config.title %><% } %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if (theme.rss){ %>
     <%- feed_tag(theme.rss, { type: 'rss' }) %>
