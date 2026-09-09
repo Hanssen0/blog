@@ -219,9 +219,29 @@ body {
 }
  
 /* typography */
+a,
+.month,
+.multiline-link-text {
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(hsla(0,0%,50%,.33), hsla(0,0%,50%,.33));
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 0 3px;
+  box-decoration-break: clone;
+  transition: background-size .3s;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:hover,
+a:focus-visible,
+.month:hover,
+.article-nav-link-wrap:hover .multiline-link-text,
+.article-nav-link-wrap:focus-visible .multiline-link-text {
+  background-size: 100% 3px;
 }
 
 p, ul, ol {
@@ -325,6 +345,7 @@ blockquote {
 .article-entry a {
   -webkit-transition-duration: .3s;
   -webkit-transition-property: border-bottom;
+  background-image: none;
   border-bottom: 3px solid var(--link-color);
   transition-duration: .3s;
   transition-property: border-bottom;
@@ -338,44 +359,8 @@ blockquote {
   transition-property: border-bottom;
 }
  
-a.nav-link, .archive-article-title a, .article-nav a, a.page-number, a.extend, .month, .article-footer a, .article-category a, .article-tag a, .article-more-link a, a.article-date-link {
-  position: relative;
-  display: inline-block;
-}
-
-a.nav-link::after, .archive-article-title a::after, .article-nav a::after, a.page-number::after, a.extend::after, .month::after, .article-footer a::after, .article-category a::after, .article-tag a::after, .article-more-link a::after, a.article-date-link::after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  border-bottom: 3px solid hsla(0,0%,50%,.33);
-  -webkit-transition-duration: .3s;
-  -webkit-transition-property: width;
-  transition-duration: .3s;
-  transition-property: width;
-}
-
-a.nav-link:hover::after, .archive-article-title a:hover::after, .article-nav a:hover::after, a.page-number:hover::after, a.extend:hover::after, .month:hover::after, .article-footer a:hover::after, .article-category a:hover::after, .article-tag a:hover::after, .article-more-link a:hover::after, a.article-date-link:hover::after {
-  width: 100%;
-}
-
-.article-title a,
-#title a {
-  -webkit-box-decoration-break: clone;
-  background-image: linear-gradient(hsla(0,0%,50%,.33), hsla(0,0%,50%,.33));
-  background-position: 50% 100%;
-  background-repeat: no-repeat;
-  background-size: 0 3px;
-  box-decoration-break: clone;
-  display: inline;
-  transition: background-size .3s;
-}
-
-.article-title a:hover,
-#title a:hover {
-  background-size: 100% 3px;
+.article-nav-link-wrap {
+  background-image: none;
 }
 
 .article-category, .article-tag {

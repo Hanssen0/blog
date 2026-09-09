@@ -13,9 +13,9 @@ function navTitle(target) {
 <nav id="article-nav" class="article-nav">
   <% if (post.prev){ %>
     <a href="<%- url_for(post.prev.path) %>" id="article-nav-newer" class="article-nav-link-wrap newer">
-      <strong class="article-nav-caption"><%= __('newer') %></strong>
+      <strong class="article-nav-caption multiline-link-text"><%= __('newer') %></strong>
       <div class="article-nav-title">
-        <%= navTitle(post.prev) %>
+        <span class="multiline-link-text"><%= navTitle(post.prev) %></span>
       </div>
     </a>
   <% } else { %>
@@ -23,9 +23,9 @@ function navTitle(target) {
   <% } %>
   <% if (post.next){ %>
     <a href="<%- url_for(post.next.path) %>" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption"><%= __('older') %></strong>
+      <strong class="article-nav-caption multiline-link-text"><%= __('older') %></strong>
       <div class="article-nav-title">
-        <%= navTitle(post.next) %>
+        <span class="multiline-link-text"><%= navTitle(post.next) %></span>
       </div>
     </a>
   <% } else { %>
