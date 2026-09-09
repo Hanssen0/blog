@@ -338,12 +338,12 @@ blockquote {
   transition-property: border-bottom;
 }
  
-#title a, a.nav-link, .archive-article-title a, .article-nav a, a.page-number, a.extend, .month, .article-footer a, .article-category a, .article-tag a, .article-more-link a, a.article-date-link {
+a.nav-link, .archive-article-title a, .article-nav a, a.page-number, a.extend, .month, .article-footer a, .article-category a, .article-tag a, .article-more-link a, a.article-date-link {
   position: relative;
   display: inline-block;
 }
 
-#title a::after, a.nav-link::after, .archive-article-title a::after, .article-nav a::after, a.page-number::after, a.extend::after, .month::after, .article-footer a::after, .article-category a::after, .article-tag a::after, .article-more-link a::after, a.article-date-link::after {
+a.nav-link::after, .archive-article-title a::after, .article-nav a::after, a.page-number::after, a.extend::after, .month::after, .article-footer a::after, .article-category a::after, .article-tag a::after, .article-more-link a::after, a.article-date-link::after {
   content: "";
   position: absolute;
   bottom: -3px;
@@ -357,11 +357,12 @@ blockquote {
   transition-property: width;
 }
 
-#title a:hover::after, a.nav-link:hover::after, .archive-article-title a:hover::after, .article-nav a:hover::after, a.page-number:hover::after, a.extend:hover::after, .month:hover::after, .article-footer a:hover::after, .article-category a:hover::after, .article-tag a:hover::after, .article-more-link a:hover::after, a.article-date-link:hover::after {
+a.nav-link:hover::after, .archive-article-title a:hover::after, .article-nav a:hover::after, a.page-number:hover::after, a.extend:hover::after, .month:hover::after, .article-footer a:hover::after, .article-category a:hover::after, .article-tag a:hover::after, .article-more-link a:hover::after, a.article-date-link:hover::after {
   width: 100%;
 }
 
-.article-title a {
+.article-title a,
+#title a {
   -webkit-box-decoration-break: clone;
   background-image: linear-gradient(hsla(0,0%,50%,.33), hsla(0,0%,50%,.33));
   background-position: 50% 100%;
@@ -372,7 +373,8 @@ blockquote {
   transition: background-size .3s;
 }
 
-.article-title a:hover {
+.article-title a:hover,
+#title a:hover {
   background-size: 100% 3px;
 }
 
@@ -504,11 +506,19 @@ blockquote {
   width: max-content;
 }
 
-.note-group-more summary:hover,
+.note-group-more summary:active,
 .note-group-more summary:focus-visible {
   background-color: var(--text-color);
   border-color: var(--text-color);
   color: var(--bg-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .note-group-more summary:hover {
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+    color: var(--bg-color);
+  }
 }
 
 .note-group-more summary::marker {
