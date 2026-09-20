@@ -15,6 +15,13 @@ code {
   font-family: var(--highlight-stack);
 }
 
+.article-entry :not(pre) > code {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .highlight td, .highlight th, .highlight table caption, .highlight table td, .highlight table th {
   border: none;
   padding: 0;
