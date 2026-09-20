@@ -100,6 +100,13 @@ body {
   overflow: visible;
 }
 
+.article-entry hr {
+  border: 0;
+  border-top: 1px solid var(--tertiary-color);
+  margin: 2em 1em;
+  opacity: .65;
+}
+
 .article-category {
   line-height: 1.5;
 }
